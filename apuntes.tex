@@ -1,0 +1,999 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=20mm, top=20mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+
+\newcounter{nancho}
+\newcommand{\punto}{
+	\vskip 5mm
+	\stepcounter{nancho}
+	\noindent
+	{\bf\S\arabic{nancho}\hskip 2mm}
+}
+\newcounter{ejemplo}
+\newcommand{\ejemplo}{
+	\vskip 5mm
+	\stepcounter{ejemplo}
+	\noindent
+	{\bf Ejemplo \arabic{ejemplo}:\hskip 2mm}
+}
+\newcounter{ejercicio}
+\newcommand{\ejercicio}{
+	\vskip 5mm
+	\stepcounter{ejercicio}
+	\noindent
+	{\bf Ejercicio \arabic{ejercicio}:\hskip 2mm}
+}
+
+
+\begin{document}
+
+
+%\maketitle
+%\tableofcontents
+
+\setcounter{chapter}{-1}
+\chapter{Conjuntos y números}
+
+\section{Teoría de conjuntos}
+
+\subsection{Definiciones y notación}
+
+La teoría de conjuntos es importante porque es el lenguaje con el que se construye toda la matemática moderna. Aunque en este curso lo veremos, es posible definir todos los objetos matemáticos (número, función, matriz, etc.) mediante conjuntos.
+
+\punto
+Un conjunto es una colección de elementos. Se denotan escribiendo sus elementos entre llaves:
+$$
+A=\{1,2,3\}
+$$
+
+\punto
+También se pueden representar mediante diagramas de Venn.
+%figura
+
+\punto
+El símbolo $\in$ se lee «pertenece», y el símbolo $\notin$ se lee «no pertenece».
+$$
+1\in A, \qquad 4\notin A
+$$
+
+\punto
+En un conjunto no puede haber elementos repetidos, además el orden es irrelevante. Dos conjuntos son iguales si y solo si tienen los mismos elementos.
+$$
+\{1, 1\} = \{1\}, \qquad \{1, 2\} = \{2, 1\}
+$$
+
+\punto
+Si todos los elementos de $A$ son también elementos de $B$ se dice que $A$ está contenido en $B$ y se denota con el símbolo $\subset$. Evidentemente un conjunto siempre está incluido en sí mismo.
+$$
+A=\{1,2\}, \qquad B=\{1,2,3\}, \qquad A\subset B, \qquad A\subset A
+$$
+Nótese que sería incorrecto decir $A\in B$, porque $A$ no es un elemento de $B$.
+
+\punto
+Si queremos decir explícitamente que un conjunto está contenido estrictamente en otro, es decir, está incluido pero no es igual, usaremos el símbolo~$ \subsetneq$
+$$
+A\subsetneq B
+$$
+
+\punto
+Existe un conjunto que no tiene ningún elemento. Se llama «conjunto vacío», y se denota con el símbolo $\emptyset$. Evidentemente, el conjunto vacío está contenido en cualquier otro conjunto.
+$$
+\emptyset\subset A
+$$
+
+\punto
+Un conjunto dado se puede definir de dos maneras: 
+\begin{description}
+\item[por extensión:] enumerar, uno por uno, todos sus elementos:
+$$
+A=\{2,4,6,8\}
+$$
+\item[por comprensión:] dar una propiedad que solo cumplan sus elementos:
+$$
+A=\{\text{números pares menores que 10}\}
+$$
+\end{description}
+Ambos definiciones se refieren al mismo conjunto, ya que los números pares menores que 10 son exactamente 2, 4, 6 y 8.
+
+\ejemplo
+El conjunto de alumnos de la clase podríamos definirlo por extensión, dando el nombre de todos los alumnos, o bien por comprensión, dando una propiedad que solo cumplen los alumnos de la clase:
+$$
+A=\{\text{Pedro, Juan, María, etc\dots}\}
+$$
+$$
+A=\{\text{alumnos matriculados en primero de Arquitectura}\}
+$$
+
+\ejercicio
+Definir $\emptyset$ por extensión y por comprensión.
+
+\ejercicio
+¿Cuál o cuáles de los siguientes conjuntos son el conjunto vacío?
+$$
+A=\{\}\qquad B=\{0\} \qquad C=0 \qquad D=\emptyset \qquad E=\{\{\}\} \qquad F=\{\emptyset\}
+$$
+
+\ejercicio
+¿Si $B=\{1\}$, en cuáles de los siguientes conjuntos se tiene $B\subset A$ o $B\in A$?
+$$
+A=\{1\} \qquad A=\{\{1\}\} \qquad A=\{1, \{1\}\}
+$$
+
+\punto
+Si un conjunto es finito su {\bf cardinal} es el número de elementos que tiene. Se denota con el símbolo $\#$
+$$
+A=\{1,3,5,7\}\qquad \#A=4
+$$
+
+\ejercicio
+Calcular
+$$
+\#\{\#\{\#\emptyset\}\}
+$$
+
+\punto 
+Si un conjunto tiene infinitos elementos, se dice que tiene un cardinal infinito. Sin embargo, no todos los conjuntos infinitos tienen el mismo cardinal. Aunque pueda parecer extraño, existen muchos {\em tamaños} distintos de infinito. Esta cuestión se sale del contenido de la asignatura, pero a modo de ejemplo podemos decir que el cardinal del conjunto de los números primos es un infinito {\em pequeño} y el cardinal del conjunto de puntos del plano es un infinito {\em grande}.
+\subsection{Operaciones con conjuntos}
+
+
+Dados dos conjuntos es posible realizar operaciones con ellos para obtener nuevos conjuntos:
+
+\punto {\bf Unión:}
+La unión de dos conjuntos es un conjunto más grande que los contiene a ambos. Se denota con el símbolo $\cup$
+$$
+A\cup B=\{x: x\in A \text { \ ó \ } x\in B\}
+$$
+Nótese que la conjunción «o» que aparece en esta definición es \emph{inclusiva}, es decir, el elemento $x$ puede pertenecer a $A$, puede pertenecer a $B$, o puede pertenecer a ambos.
+$$
+A=\{1,2\}\qquad B=\{2,3\}\qquad A\cup B=\{1,2,3\}
+$$
+
+\punto
+{\bf Intersección:}
+La intersección de dos conjuntos es un conjunto más pequeño formado por los elementos que son comunes a ambos. Si no existe ningún elemento común, la intersección será el conjunto vacío. Se denota con el símbolo $\cap$
+$$
+A\cap B=\{x: x\in A \text { \ y \ } x\in B\}
+$$
+La conjunción «y» que aparece en este caso no es estrictamente necesaria, ya que si en la definición de un conjunto aparecen varias condiciones sin ningún nexo entre ellas, se sobrentiende que deben cumplirse todas a la vez.
+$$
+A=\{1,2\}\qquad B=\{2,3\}\qquad A\cap B=\{2\}
+$$
+
+\punto
+{\bf Diferencia:}
+La diferencia de dos conjuntos es el conjunto de los elementos que pertenece a uno de ellos, pero no al otro. Se denota mediante el signo $\setminus$
+$$
+A\setminus B=\{x: x\in A,\, x \notin B\}
+$$
+La diferencia de conjuntos no es commutativa, en general $A\setminus B\neq B\setminus A$.
+$$
+A=\{1,2\}\qquad B=\{2,3\}\qquad A\setminus B=\{1\} \qquad B\setminus A = \{3\}
+$$
+
+\punto
+{\bf Diferencia simétrica:}
+La diferencia simétrica es el conjunto de elementos que pertenecen a uno u otro conjunto pero no a ambos. Se denota con el símbolo $\triangle$
+$$
+A\triangle B=\{x: x\in a \text{ \ xor \ } x\in B\}
+$$
+Utilizamos la palabra «xor» (del inglés \emph{exclusive or}) para denotar una conjunción disyuntiva que excluyente, es decir, indica que se puede dar un caso u otro, pero no los dos a la vez.
+$$
+A=\{1,2\}\qquad B=\{2,3\}\qquad A\triangle B=\{1,3\}
+$$
+La diferencia simétrica se puede expresar también usando combinaciones de unión, intersección y diferencia:
+$$
+A\triangle B=(A\cup B) \setminus (A\cap B)=(A\setminus B)\cup(B\setminus A)
+$$
+
+\punto
+Obsérvese que todas estas operaciones, excepto la diferencia, son conmutativas, es decir:
+$$
+A\cup B = B\cup A, \qquad A\cap B = B\cap A, \qquad A\triangle B = B \triangle A.
+$$
+
+\punto
+{\bf Complementario:}
+Si suponemos que todos los elementos pertenecen a un conjunto universal $X$ entonces el complentario de $A$  es
+$$
+\overline A =\{x: x\notin A\} = X\setminus A
+$$
+
+\ejemplo
+Si $A$ es un subconjunto del conjunto $X$ de todas las cifras
+$$
+A=\{1, 2\}\qquad X=\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}
+$$
+entonces el complementario de $A$ es
+$$
+\overline A = \{0, 3, 4, 5, 6, 7, 8, 9\}
+$$ 
+
+
+\subsection{Propiedades}
+\punto
+La unión e intersección de conjuntos tienen varias propiedades entre las que podemos citar las siguientes: 
+$$
+A\cup (B\cap C) = (A\cup B) \cap (A\cup C)
+$$
+$$
+A\cap (B\cup C) = (A\cap B) \cup (A\cap C)
+$$
+\punto 
+Combinadas con el complentario se tienen las llamadas {\bf leyes de Morgan}:
+$$
+\overline{A\cup B}=\overline A \cap \overline B
+$$
+$$
+\overline{A\cap B}=\overline A \cup \overline B
+$$
+Obsérvese que en todas estas propiedades el papel de los signos $\cup$ y $\cap$ es intercambiable.
+
+\ejercicio
+Dados los conjuntos $A=\{1,2,3\}$, $B=\{3,4,5\}$ y $C=\{1,3,5,7\}$, calcular
+$$
+(A\cup B)\cap C \qquad
+A\cap(B\cap C) \qquad
+(A\setminus B)\cup C
+$$
+$$
+A\cup (B\setminus C) \qquad
+(A\triangle B)\setminus C \qquad
+A\triangle (B\cup C)
+$$
+
+\ejercicio
+Demostrar las leyes de Morgan
+
+\noindent
+{\bf Indicación:}
+Para demostrar que dos conjuntos son iguales una técnica habitual es demostrar primero que uno de ellos está contenido en el otro, y después la inclusión contraria. Por ejemplo, para demostrar $\overline{A\cup B}=\overline A \cap \overline B$, demostraremos en primer lugar que $\overline{A\cup B} \subset \overline A \cap \overline B$. Para ello tomamos un elemento cualquiera $x\in \overline {A \cup B}$ y probaremos que también pertence a $\overline A\cap \overline B$:
+$$
+x\in \overline{A\cup B} \implies x\notin A\cup B \implies x\notin A \text{ y } x\notin B \implies x\in \overline A \text { y } x\in \overline B \implies x\in \overline A \cap \overline B.
+$$
+
+De forma análoga se demuestra la inclusión contraria $\overline A \cap \overline B \subset \overline {A \cup B}$.
+
+\subsection{Otras operaciones con conjuntos}
+
+\punto
+El conjunto de todos los subconjuntos posibles de un conjunto dado $A$ se llama {\bf partes de $A$}. Se denota $\mathcal{P}(A)$.
+$$
+\mathcal{P}(A)=\{B: B\subset A\}
+$$
+
+\ejemplo
+El conjunto $A=\{1,2,3\}$ tiene en total 8 subconjuntos posible: el vacío, 3 subconjuntos de 1 elemento, 3 subconjuntos de 2 elementos, y el total.
+$$
+\mathcal{P}(A)=\left\{ \emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2, 3\}, \{1,2,3\}\right\}
+$$
+
+\punto
+Si el cardinal de $A$ es $\#A=n$ entonces el cardinal de partes de $A$ es $2^n$. Esta propiedad también es cierta para cardinales infinitos.
+
+$$
+\# \mathcal{P}(A)=2^{\#A}
+$$
+
+
+\ejercicio
+¿Cuántos elementos tiene $\mathcal{P}(\emptyset)$?
+
+\subsection{Pares ordenados}
+\punto
+Se llama {\bf par ordenado} a dos elementos encerrados entre paréntesis.
+$$(1,2)$$
+
+\punto
+No es lo mismo que un conjunto
+$$(1,2)\neq\{1,2\}$$
+
+\punto
+El orden es importante, y se pueden repetir elementos:
+$$
+(1,2)\neq (2,1)\qquad (1,1)
+$$
+
+\punto
+Se puede generalizar a $n$-tuplas, es decir, $n$ elementos encerrados entre paréntesis.
+$$
+3\text{-tupla}: (1,2,3) \qquad
+5\text{-tupla}: (7,7,7,7,7)
+$$
+
+\subsection{Producto cartesiano}
+\punto
+Dados dos conjuntos $A$ y $B$ se llama {\bf producto cartesiano} y se denota por $A\times B$ al conjunto de todos los pares ordenados donde el primer elemento pertenece a $A$ y el segundo a $B$.
+$$
+A\times B = \{ (a,b): a\in A, b\in B\}
+$$
+
+\ejemplo
+$$
+A=\{1, 2\} \qquad B=\{2,3\}\qquad
+A\times B=\left\{ (1,2), (1,3), (2,2), (2,3) \right\}
+$$
+
+\punto
+Si $A$ tiene $n$ elementos y $B$ tiene $m$ elementos entonces $A\times B$ tiene $n\times m$ elementos:
+$$
+\# (A\times B) = \# A \times \# B
+$$
+
+\punto
+La definición de producto cartesiano se puede generalizar a más de dos conjuntos:
+$$
+A\times B \times C= \{ (a,b,c): a\in A, b\in B, c\in C\}
+$$
+
+\punto
+El producto cartesiano de un conjunto por sí mismo se denota utilizando potencias
+$$
+A^2=A\times A\qquad \qquad A^3 = A\times A \times A
+$$
+
+\ejercicio
+Calcular los siguientes productos cartesianos
+$$
+\{1\} \times \{1, 2, 3\},\qquad
+\{1, 2\} \times \{1, 2, 3\}, \qquad
+\{1,2\} \times \emptyset 
+$$
+
+\punto
+El producto cartesiano no es conmutativo: $A\times B \neq B \times A$.
+
+
+\section{Funciones}
+\punto
+Una función $f$ entre un conjunto $A$ llamado {\bf dominio} y otro $B$ llamado {\bf imagen} es una regla de asignación que aplica a cada elemento $x\in A$ un único elemento $f(x)\in B$. Se denota
+$$
+f:A\longrightarrow B
+$$
+$$
+\qquad x\mapsto f(x)
+$$
+
+\ejemplo
+$$
+A=\{1,2,3\}\quad B=\{a,b,c\}\qquad
+f(1)=a\qquad f(2)=c \qquad f(3)=c
+$$
+
+\punto
+Puede haber elementos de $B$ que no se correspondan con ninguno de $A$, o que se correspondan con más de uno. Pero a cada elemento de $A$ le debe corresponder un único elemento de $B$
+
+\ejemplo
+Si $A$ es el conjunto de todas las personas del mundo, la asignación $f:~A\to~A$ definida por $f(x)=$ «madre biológica de $x$» es una función porque para cada persona existe una y solo una persona que sea su madre.
+
+\ejemplo
+Sin embargo, la asignación $f(x)$= «hijo de $x$» no es una verdadera función porque existen personas $x$ que no tienen hijos, o que tienen más de uno.
+
+\ejemplo
+La relación $f(x)=$ «raíz cuadrada de $x$» no es una función, porque los números positivos tienen dos raíces cuadradas, y no sabríamos decir si, por ejemplo $f(4)=2$ o $f(4)=-2$. Sin embargo $f(x)=x^2$ sí es una función.
+
+\punto
+El conjunto de todas las funciones posibles $f:A\to B$ de denota $B^A$.
+\ejercicio
+Hallar todas las funciones posibles entre $A=\{1,2\}$ y $B=\{a, b, c\}$
+
+\punto
+Si $A$ tiene $n$ elementos y $B$ tiene $m$ elementos entonces $B^A$ tiene $n^m$ elementos
+$$
+\#(B^A)=\#B^{\# A}
+$$
+
+\punto
+El {\bf grafo} de una función $f:A\to B$ es un elemento de $\cal{P}(A\times B)$, es decir, un subconjunto del producto cartesiano $A\times B$, definido por
+$$
+G(f)=\{(a, b): a\in A, b=f(a)\}
+$$
+\ejemplo
+El grafo de la función del ejemplo 5 es
+$$
+G(f)=\{(1,a), (2,c), (3,c)\}
+$$
+
+\punto 
+La mayoría de las funciones que se estudian son numéricas. El grafo es lo que habitualmente se llama {\bf gráfica}
+
+\ejemplo
+La gráfica de la función $f(x)=x^2$ es el conjunto
+$$
+G(f)=\{(0,0), (1,1), (2, 4), (3, 9), \dots \}
+$$
+Si este conjunto lo representamos  en el plano, obtenemos una parábola.
+
+\subsection{Clasificación de funciones}
+
+\punto
+Una función es {\bf inyectiva} si cumple la propiedad
+$$
+f(x)=f(y) \implies x=y.
+$$
+En otras palabras, no puede haber elementos distintos a los que les corresponda el mismo elemento.
+
+\ejemplo
+La función $f(x)=2x+1$ es inyectiva, veamos la demostración:
+$$
+f(x)=f(y) \implies 2x+1 = 2y+1 \implies 2x = 2y \implies x=y
+$$
+\ejemplo
+La función $f(x)=x^2$ no es inyectiva porque existen elementos distintos, por ejemplo $x=2$, $y=-2$, a los que se le asignan el mismo valor: 
+$$f(x)=2^2=4=(-2)^2=f(y).$$
+
+\ejemplo 
+Si $A$ es el conjunto de todas las personas, la función $f:A\to A$ definida por $f(x)=$«madre de $x$» no es inyectiva porque puede haber dos elementos distintos $x$ e $y$ que sean hermanos con la misma madre y por tanto $f(x)=f(y)$.
+
+\ejemplo
+Si $A$ el el conjunto de personas mayores de edad de nacionalidad española, y $B$ es el conjunto de todos los números, la función $f:A\to B$ definida por $f(x)=$«nº de DNI de $x$» sí es inyectiva porque (si no hay ningún error) dos personas distintas siempre tienen nº de DNI distinto.
+
+\punto 
+Una función $f:A\to B$ es {\bf sobreyectiva} si cumple la propiedad
+$$
+\forall y\in B\quad \exists x\in A \text{ tal que } f(x)=y.
+$$
+En otras palabras, no hay ningún elemento del conjunto $B$ que no sea imagen de algún elemento de $A$.
+
+\ejemplo
+La función $f(x)=2x+1$ es sobreyectiva. Para demostrarlo, dado un número cualquiera $y$, debemos encontrar otro número $x$ tal que $f(x)=y$. Para ello despejamos $x$ de la ecuación:
+$$
+f(x)=y \implies 2x+1=y \implies 2x=y-1 \implies x=\frac{y-1}{2}
+$$
+Obviamente, el número que acabamos de obtener cumple que $f\left(\dfrac{y-1}{2}\right)=y$.
+
+\ejemplo
+La función $f(x)=x^2$ no es sobreyectiva porque los números negativos no son el cuadrado de ningún otro número. Es imposible encontrar, por ejemplo, un número (real) $x$ que cumpla $f(x)=-1$
+
+\ejemplo
+La función $f(x)=$ «madre de $x$» no es sobreyectiva porque existen personas que no son madres de nadie.
+
+\ejemplo
+La función $f(x)=$ «color favorito de $x$» posiblemente sí sea sobreyectiva, porque dado cualquier color, seguramente habrá al menos una persona el mundo cuyo color favorito sea precisamente ese. ¡Aunque nunca podremos estar seguros!
+
+\punto
+Una función $f:A\to B$ es {\bf biyectiva} si es a la vez inyectiva y sobreyectiva.
+
+\ejemplo 
+La función $f(x)=2x+1$ es biyectiva.
+
+\punto
+Si existe una biyección entre dos conjuntos, necesiariamente deben tener el mismo cardinal. Esto es válido también para conjuntos infinitos.
+
+\punto
+Una función biyectiva entre un conjunto finito y sí mismo se llama también {\bf permutación}. Se puede entender como una reordenación de sus elementos.
+
+\punto
+Si un conjunto $A$ tiene $n$ elementos, el número de funciones biyectivas $f:A\to A$ que existen, o lo que es lo mismo, el número de permutaciones de $n$ elementos es $n!$ (se lee $n$ factorial).
+
+\punto
+El factorial de un número natural $n$ se calcula multiplicando $n$ por todos los número anteriores.
+$$
+n!=n(n-1)(n-2)(n-3)\dots 3.2.1
+$$
+
+\ejemplo
+$$
+3!=3\cdot 2\cdot 1=6 \qquad
+4!=4\cdot 3\cdot 2\cdot 1 = 24 \qquad
+5!=5\cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120
+$$
+
+\punto El factorial crece muy rápidamente. Por ejemplo, $50!=3\cdot 10^{64}$. Esto significa que si quisiéramos ordenar un conjunto de $50$ elementos de todas las maneras posibles e hiciéramos una permutación diferente cada segundo, ¡tardaríamos más tiempo que la edad del universo!
+
+\punto
+El número de permutaciones del conjunto vacío es 1, por tanto se considera que 
+$$
+0!=1
+$$
+
+\subsection{Números combinatorios}
+El número de subconjuntos de $n$ elementos que hay en un conjunto de $m$ elementos se denota $\binom{m}{n}$ y se lee «$m$ sobre $n$».
+
+\ejemplo
+El conjunto $A=\{1,2,3,4\}$ tiene 4 elementos. Si enumeramos todos sus subconjuntos que tengan 2 elementos, obtenemos los siguientes:
+$$
+\{1,2\}\qquad
+\{3,4\}\qquad
+\{1,3\}\qquad
+\{2,4\}\qquad
+\{1,4\}\qquad
+\{2,3\}
+$$
+Por tanto, $\binom{4}{2}=6$
+
+
+\punto
+La fórmula para calcular estos números combinatorios es 
+$$
+\binom{m}{n}=\frac{m!}{n!(m-n)!}
+$$
+
+\ejemplo
+$$
+\binom{7}{2}=\dfrac{7!}{2! \, 5!}=\dfrac{7\cdot 6 \cdot 5 \cdot 4 \cdot 3 \cdot 2}{2 \cdot 5 \cdot 4 \cdot 3 \cdot 2} = 21
+$$
+
+\ejercicio
+Calcular los siguientes números combinatorios
+$$
+\binom{3}{2}\qquad
+\binom{4}{1}\qquad
+\binom{5}{2}\qquad
+\binom{7}{0}\qquad
+\binom{6}{2}\qquad
+\binom{7}{3}\qquad
+\binom{0}{0}
+$$
+
+\punto
+Una aplicación de los números combinatorios es la fórmula del llamado \emph{binomio de Newton} que permite calcular la potencia de una suma:
+$$
+(a+b)^n=\sum_{k=0}^{k=n}\binom{n}{k} a^k b^{n-k}
+$$
+
+\ejemplo 
+Cálculo del cubo de un binomio
+$$
+(x+y)^3=\binom{3}{0}x^0y^3 + \binom{3}{1}x^1y^2+\binom{3}{2}x^2y^1+\binom{3}{3}x^3y^0=y^3+3xy^2+3x^2y+x^3
+$$
+
+\section{Conjuntos de números}
+\punto
+El conjunto más simple de números en el de los {\bf números naturales}, que son los que se usan para contar. Se denotan con la letra $\N$
+$$
+\N=\{0, 1, 2, 3, 4, 5, 6, \dots \}
+$$
+
+\punto
+El conjunto $\N$ es infinito pero eso no significa que el infinito sea un número natural.
+$$
+\infty \notin \N
+$$
+
+\punto
+Algunos matemáticos no incluyen al número 0 en el conjunto de los naturales. Algunos libros utilizan otra notación para indicar si el 0 pertenece o no al conjunto. Pero esto es una cuestión que no tiene mayor importancia.
+
+\punto
+Si al conjunto de los naturales añadimos los número negativos se obtiene el conjunto de los {\bf números enteros} que se denotan con la letra $\Z$
+$$
+\N=\{\dots, -4, -3, -2, -1, 0, 1, 2, 3, 4, \dots \}
+$$
+
+\punto
+Evidentemente se tiene la inclusión $\N\subset \Z$.
+
+\punto
+El conjunto de los {\bf números racionales} está formado por todas las fracciones y se denota con la letra $\Q$
+$$
+\Q=\left\{\frac{p}{q}: p,q\in \Z, q\neq 0 \right\}
+$$
+
+\punto
+Un número racional siempre se puede escribir de diferentes formas
+$$
+\frac{3}{2}=\frac{6}{4}=\frac{9}{6}=\frac{-3}{-2}=\dots
+$$
+
+\punto
+En particular, los números enteros se pueden escribir como fracción con denominador 1, por ejemplo $7=\frac{7}{1}$. Con lo cual, los números enteros son también números racionales
+$$
+\N\subset \Z \subset \Q
+$$
+
+\punto 
+Habitualmente se escriben los números racionales en su forma irreducible, es decir, sin divisores comunes entre numerador y denominador (se dice que son \emph{primos entre sí}), y con denominador positivo.
+
+\punto
+Obsérvese que en la definición de $\Q$ se exige que el denominador sea distinto de 0. La división por cero no está permitida, da lugar a errores graves.
+
+\punto
+Los números racionales se pueden escribir también como números decimales con una cantidad finita de decimales, o infinita periódica.
+$$
+\frac{1}{2}=0,5 \qquad \qquad \frac{4}{3}=1,333\dots=1,\widehat{3}
+$$
+
+\ejercicio
+Convertir los siguientes números decimales periódicos en una fracción
+$$
+0,777\dots=0,\widehat{7} \qquad \qquad 1,2343434\dots=1,2\widehat{\,34\,}
+$$
+
+\punto
+Existen números como $\sqrt{2}$ ó $\pi$ que no se pueden escribir como cociente de números enteros. No son número racionales. Si los escribiéramos en forma de decimales obtendríamos una cantidad infinita de decimales no periódicos.
+
+
+\chapter{Vectores y geometría}
+
+\section{Vectores}
+
+\punto
+Un vector en el plano (o en el espacio) es un segmento orientado. Se suele representar mediante una flecha.
+
+\punto
+Los elementos de un vector son: longitud, dirección, sentido, y punto de aplicación.
+
+\punto
+Se dice que dos vectores son \emph{equivalentes} si tienen la misma longitud, dirección y sentido. El punto de aplicación no es importante. 
+
+\punto
+Dado un vector cualquiera, podemos considerar un vector equivalente a él que esté aplicado en el origen coordenadas. De esta manera podemos identificar el conjunto de todos los vectores con $\R^2$ (o $\R^3$). Cada vector se identifica con las coordenadas de su extremo final.
+
+\ejemplo
+La notación ${\bf v}=(2,3,1)$ indica que si se aplica el vector ${\bf v}$ en $(0,0,0)$, entonces su extremo se encuentra en el punto de coordenadas $(2,3,1)$.
+
+\punto
+Para denotar un vector se suele escribir una pequeña flecha encima: $\vec{v}$. En los libros se impresos es más habitual escribir el nombre del vector en negrita: ${\bf v}$. De cualquier manera, el contexto siempre indica si un objeto matemático es un vector o no.
+
+\punto
+Los siguientes vectores del plano y el espacio tienen longitud 1 y se denominan {\bf vectores unitarios canónicos}.
+$$
+\text{Plano: } \quad {\bf i}=(1,0)\qquad {\bf j}=(0,1)
+$$
+$$
+\text{Espacio: } \quad {\bf i}=(1,0,0)
+\qquad {\bf j}=(0,1,0)
+\qquad {\bf k}=(0,0,1)
+$$
+
+\punto
+Cualquier vector del plano o del espacio se puede expresar como una combinación de vectores unitarios
+$$
+{\bf v}=(2,3,1)=
+2{\bf i} + 3{\bf j} +{\bf k}
+$$
+
+\punto
+El vector ${\bf 0}$ es el que tiene todas sus coordenadas 0
+$$
+{\bf 0}=(0,0)\qquad \qquad
+{\bf 0}=(0,0,0)
+$$
+
+\punto
+Un {\bf vector fila} es una matriz que tiene una sola fila. Un {\bf vector columna} es una matriz que tiene una sola columna
+$$
+{\bf v}=
+\left(
+\begin{array}{c c c}
+2 & 3 & 1
+\end{array}
+\right)
+\qquad
+{\bf v}=
+\left(
+\begin{array}{c}
+2 \\ 3 \\ 1
+\end{array}
+\right)
+$$
+
+\punto
+El {\bf módulo} o {\bf norma} de un vector es su longitud. Se denota encerrando el vector entre barras dobles (barras simples en algunos libros), y se calcula utilizando el Teorema de Pitágoras con la siguiente fórmula
+$$
+{\bf v}=(a, b) \qquad \qquad 
+\|{\bf v}\|=\sqrt{a^2+b^2}
+$$
+$$
+{\bf v}=(a, b, c) \qquad \qquad 
+\|{\bf v}\|=\sqrt{a^2+b^2+c^2}
+$$
+
+\ejemplo
+TODO
+
+
+\subsection{Proyección ortogonal}
+
+\subsection{Producto vectorial}
+
+\punto
+El producto vectorial se denota por el símbolo $\times$. Es una operación que combina dos vectores y para obtener como resultado un tercer vector.
+$$
+\text{VECTOR} \times \text{VECTOR} \longrightarrow \text{VECTOR} 
+$$
+
+\punto
+Dados dos vectores ${\bf u}, {\bf v}\in \R^3$, de coordenadas ${\bf u}=(u_1, u_2, u_3)$ y ${\bf v}=(v_1, v_2, v_3)$, se define su {\bf producto vectorial} como el vector:
+$$
+{\bf u} \times {\bf v} = (u_2 v_3 - u_3 v_2, -(u_1 v_3 - u_3 v_1), u_1 v_2 - u_2 v_1)
+$$
+
+\ejemplo
+Si ${\bf u}=(1,2,3)$ y ${\bf v}=(-1,0,4)$ entonces
+$$
+{\bf u} \times {\bf v} = (8-0, -(4+3), 0+2)=(8, -7, 2)
+$$
+
+
+\punto
+El producto vectorial es un concepto que solo está definido en $\R^3$, o sea en 3 dimensiones. Sin embargo, todas las demás operaciones que hemos visto (suma, producto por escalar, norma y producto escalar) son aplicables a vectores de cualquier dimensión.
+
+\punto
+Recordamos ahora brevemente cómo calcular el determinante de una matriz cuadrada. Lo haremos solo para matrices de tamaño 2 y tamaño 3. El determinante de una matriz $A$ se denota $|A|$ y es un número real que se calcula del siguiente modo
+$$
+\left|
+\begin{array}{cc}
+a & b \\
+c & d
+\end{array}
+\right|
+= ad - bc
+$$
+$$
+\left|
+\begin{array}{ccc}
+a & b & c\\
+d & e & f\\
+g & h & i
+\end{array}
+\right|
+= aei + bfg + dhc - (ceg + fha + bdi)
+$$
+
+\punto
+La notación de \emph{determinantes} nos proporciona un método para calcular el producto vectorial que es más fácil de memorizar: 
+$$
+{\bf u} \times {\bf v} = \left|
+\begin{array}{ccc}
+{\bf i} & {\bf j} & {\bf k}\\
+u_1 & u_2 & u_3\\
+v_1 & v_2 & v_3
+\end{array}
+\right|
+=(u_2 v_3 - u_3 v_2){\bf i} - (u_1 v_3 - u_3 v_1){\bf j} + (u_1 v_2 - u_2 v_1){\bf k}
+$$
+
+\punto
+Este es solo un método formal para hace los cálculos. Matemáticamente no tiene sentido mezclar vectores y escalares.
+
+\ejemplo
+Utilizando los datos del ejemplo anterior:
+$$
+{\bf u} \times {\bf v} = \left|
+\begin{array}{ccc}
+{\bf i} & {\bf j} & {\bf k}\\
+1 & 2 & 3\\
+-1 & 0 & 4
+\end{array}
+\right|
+=8{\bf i} - 7{\bf j} + 2{\bf k}=(8, -7, 2)
+$$
+
+\subsubsection{Propiedades algebraicas del producto vectorial}
+\punto
+Si ${\bf u}$, ${\bf v}$, ${\bf w}$ son vectores y $c$ es un escalar, entonces se tienen las siguientes propiedades que relacionan el producto vectorial con la suma y el producto por escalares:
+\begin{enumerate}
+\item
+${\bf u} \times {\bf v} = -({\bf v} \times {\bf u})$ (propiedad anticonmutativa).
+\item
+${\bf u}\times ({\bf v} + {\bf w}) = {\bf u} \times {\bf v} + {\bf u} \times {\bf w}$ (propiedad distributiva)
+\item
+$c\, ({\bf u} \times {\bf v}) = (c\, {\bf u})\times {\bf v} = {\bf u} \times (c\, {\bf v})$
+\item
+${\bf u} \times {\bf 0} = {\bf 0} \times {\bf u} = {\bf 0}$
+\item
+${\bf u} \times {\bf u} = {\bf 0}$
+\item
+${\bf u} \cdot ({\bf v} \times {\bf w}) = ({\bf u} \times {\bf v}) \cdot {\bf w}$
+\end{enumerate}
+
+\punto
+Para demostrar estas propiedades un método sencillo es lo que se llama informalmente \emph{pasar a coordenadas}, es decir, desarrollar cada expresión en función de las coordenadas de los vectores que intervienen y comprobar que se cumple la igualdad.
+
+\punto
+Demostración de la última propiedad. Sean
+${\bf u}=(u_1, u_2, u_3)$, ${\bf v}=(v_1, v_2, v_3)$ y ${\bf w}=(w_1, w_2, w_3)$.
+$$
+{\bf u} \cdot ({\bf v} \times {\bf w})=
+$$
+Desarrollamos del mismo modo el otro miembro de la igualdad y comprobamos que se obtiene el mismo resultado:
+$$
+({\bf u} \times {\bf v}) \cdot {\bf w}=
+$$
+
+
+\ejercicio
+Demostrar las demás propiedades.
+
+\subsubsection{Propiedades geométricas del producto vectorial}
+\punto
+Las siguiente propiedades relacionan el producto vectorial con la ortogonalidad, el paralelismo y la norma:
+\begin{enumerate}
+\item
+${\bf u} \times {\bf v}$ es ortogonal a ${\bf u}$ y a ${\bf v}$.
+\item
+$\|{\bf u} \times {\bf v}\| = \|{\bf u}\| \|{\bf v}\| \sen \theta$, donde $\theta$ es el ángulo que forman los vectores.
+\item
+${\bf u} \times {\bf v} = {\bf 0}$ si y solo si ${\bf u}=k\, {\bf v}$, siendo $k$ un escalar.
+\item
+$\|{\bf u} \times {\bf v}\|$ es el área del paralelogramo que forman ${\bf u}$ y ${\bf v}$.
+\end{enumerate}
+
+\punto
+Vamos a demostrar la primera propiedad. Dos vectores son ortogonales si y solo si su producto escalar es 0. Vamos a multiplicar ${\bf u}$ escalarmente por ${\bf u} \times {\bf v}$:
+$$
+{\bf u} \cdot ({\bf u} \times {\bf v}) = ({\bf u} \times {\bf u}) \cdot {\bf v} = {\bf 0} \cdot {\bf v} = 0
+$$
+Nótese que hemos utilizado las propiedades 6 y 5 del producto vectorial y la propiedad 4 del producto escalar. Análogamente se comprueba que 
+$$
+{\bf v}\cdot ({\bf u} \times {\bf v}) = 
+({\bf u} \times {\bf v}) \cdot {\bf v}= 
+{\bf u}\cdot ({\bf v} \times {\bf v})=
+{\bf u} \cdot {\bf 0}= 0
+$$
+donde también hemos usado la propiedad conmutativa del producto escalar.
+
+\punto
+Demostración de la segunda propiedad. Ver libro.
+
+\subsection{Producto mixto}
+
+\punto
+El producto mixto de tres vectores ${\bf u}$, ${\bf v}$, ${\bf w}\in \R^3$ se define como
+$$
+[{\bf u},{\bf v}, {\bf w}]=
+{\bf u}\cdot ({\bf v} \times {\bf w}) \quad 
+\text {o equivalentemente} \quad
+({\bf u} \times {\bf v}) \cdot {\bf w}
+$$
+
+\punto
+El producto mixto, también llamado producto triple, solo se define en dimensión 3.
+
+\punto
+El producto mixto, transforma una terna de vectores en un escalar.
+$$
+[\text{VECTOR}, \text{VECTOR}, \text{VECTOR}]
+\longrightarrow \text{ESCALAR}
+$$
+
+
+\punto
+El método práctico para calcularlo es pasar a coordenadas y utilizar la notación del determinante
+$$
+[{\bf u},{\bf v}, {\bf w}]=
+\left|
+\begin{array}{ccc}
+u_1 & u_2 & u_3 \\
+v_1 & v_2 & v_3 \\
+w_1 & w_2 & w_3
+\end{array}
+\right|
+$$
+
+\ejemplo
+Si ${\bf u}=(1,2,3)$, ${\bf v}=(-1, 1,1)$ y ${\bf w}=(2, -3, 0)$ entonces
+$$
+[{\bf u},{\bf v}, {\bf w}]=
+\left|
+\begin{array}{ccc}
+1 & 2 & 3 \\
+-1 & 1 & 1 \\
+2 & -3 & 0
+\end{array}
+\right|
+=0 + 4 + 9 - (6 -3 + 0) = 10
+$$
+\subsubsection{Significado geométrico del producto mixto}
+\punto
+El producto mixto es el volumen del paralelepípedo que cuyos lados son ${\bf u}$, ${\bf v}$ y ${\bf w}$.
+
+\section{Rectas en el plano y en el espacio}
+
+\punto
+Tanto los puntos como los vectores se representan mediante elementos de $\R^2$ o de $\R^3$. El contexto siempre nos indica si un elemento dado es un punto o un vector. Dos vectores se pueden sumar, pero dos puntos no. También es posible sumar un punto y un vector para obtener otro punto, y por tanto, la resta de dos puntos, será un vector.
+$$
+\text{vector} + \text{vector} = \text{vector}
+$$
+$$
+\text{punto} + \text{vector} = \text{punto}
+$$
+$$
+\text{punto final} - \text{punto inicial} = \text{vector}
+$$
+
+\ejemplo
+Calcular el punto medio entre dos puntos dados.
+
+\punto
+Una recta se puede determinar conociendo uno de sus puntos, y un vector en su misma dirección, llamado {\bf vector director}
+
+\punto
+Cualquier punto de la recta se puede obtener sumando al punto $P$ un múltiplo del vector ${\bf v}$. Por tanto un punto genérico de la recta será de la forma $P+t\, {\bf v}$ donde $t\in \R$ es un parámetro que «alarga» o «encoge» el vector ${\bf v}$.
+
+\punto
+Por tanto la recta que pasa por $P$ y es paralela al vector ${\bf v}$ es el siguiente conjunto de puntos
+$$
+R=\{(x,y)\in R^2: (x, y)=P+ t\, {\bf v},\quad t\in \R \}
+$$
+\subsubsection{Ecuación vectorial}
+
+\punto
+La ecuación que caracteriza los puntos del anterior conjunto es lo que se denomina ecuación vectorial de la recta:
+$$
+(x,y)=P + t\, {\bf v}
+$$
+
+\ejemplo
+Hallar la ecuación vectorial de la recta que pasa por $P=(1,2)$ y tiene como vector director a ${\bf v}=(-1,4)$.
+$$
+(x,y)=(1,2)+ t\,(-1, 4)
+$$
+
+\subsubsection{Ecuaciones paramétricas}
+\punto
+Si $P=(x_0, y_0)$ y ${\bf v}=(v_1, v_2)$ y desarrollamos la ecuación vectorial en sus coordenadas, obtenemos las llamadas ecuaciones paramétricas
+$$
+\begin{cases}
+x & = x_0 + t\,v_1 \\
+y & = y_0 +t\,v_2
+\end{cases}
+$$
+
+\ejemplo
+Las ecuaciones paramétricas del ejemplo anterior son
+$$
+\begin{cases}
+x=1-t\\
+y=2+4t
+\end{cases}
+$$
+
+\subsubsection{Ecuación continua}
+\punto
+Si despejamos el parámetro $t$ de las dos ecuaciones del sistema anterior e igualamos, se obtiene la ecuación continua.
+$$
+\frac{x-x_0}{v_1}=\frac{y-y_0}{v_2}
+$$
+
+\ejemplo
+Siguiendo con el mismo ejemplo, al despejar $t$ en cada una de las ecuaciones obtengo $t=1-x$, y por otro lado $t=\frac{y-2}{4}$. Igualando ambas expresiones de $t$ obtenemos
+$$
+1-x=\frac{y-2}{4}
+$$
+
+\subsubsection{Ecuación general}
+\punto
+Simplificando la ecuación anterior hasta obtener un polinomio de grado 1 en las variables $x$ e $y$ se obtiene la llamada ecuación general de la recta.
+$$
+ax + by +c = 0
+$$
+
+\punto 
+El vector formado con las constantes $a$ y $b$ siempre es ortogonal al vector director de la recta.
+$$
+(a,b)\perp {\bf v}
+$$
+
+\punto
+Este hecho nos proporciona una manera fácil de conocer el vector director de una recta sin más que observar su ecuación general, cambiar de orden las coordenadas del vector $(a, b)$ y cambiar el signo a una de ellas.
+
+\ejemplo
+Simplificando la ecuación continua del ejemplo anterior
+$$
+4x+y-6=0
+$$
+Obsérvese como el vector $(4,1)$ es ortogonal al vector director $(-1,4)$.
+
+\subsubsection{Ecuación explícita}
+\punto
+Si despejamos $y$ de la ecuación general se obtiene la ecuación explícita de la recta
+$$
+y=mx+k
+$$
+donde $m$ se denomina \emph{pendiente} de la recta.
+
+\punto
+La {\bf pendiente} es un concepto bastante importante en matemáticas. Dado un vector director $(v_1, v_2)$ la pendiente siempre va a ser $m=\frac{v_2}{v_1}$. Podemos imaginar la pendiente como el cociente de la parte vertical entre la parte horizontal.
+
+\end{document}
